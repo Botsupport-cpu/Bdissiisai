@@ -1,0 +1,39 @@
+python
+   from telegram import Update
+   from telegram.ext import Updater, CommandHandler, CallbackContext
+
+   TOKEN = 'AAEq_E6BEwOk7_gXBz3iFNagsMKRZxfuqPM'
+
+   def start(update: Update, context: CallbackContext) -> None:
+       update.message.reply_text('Привет! Я бот для администрирования.')
+
+   def ban(update: Update, context: CallbackContext) -> None:
+       # Логика бана пользователя
+       update.message.reply_text('Пользователь забанен!')
+
+   def mute(update: Update, context: CallbackContext) -> None:
+       # Логика мьюта пользователя
+       update.message.reply_text('Пользователь замучен!')
+
+   def warn(update: Update, context: CallbackContext) -> None:
+       # Логика предупреждения пользователя
+       update.message.reply_text('Пользователь предупрежден!')
+
+   def kick(update: Update, context: CallbackContext) -> None:
+       # Логика кика пользователя
+       update.message.reply_text('Пользователь кикнут!')
+
+   def main():
+       updater = Updater(TOKEN)
+
+       updater.dispatcher.add_handler(CommandHandler('start', start))
+       updater.dispatcher.add_handler(CommandHandler('ban', ban))
+       updater.dispatcher.add_handler(CommandHandler('mute', mute))
+       updater.dispatcher.add_handler(CommandHandler('warn', warn))
+      updater.dispatcher.add_handler(CommandHandler('kick', kick))
+
+       updater.start_polling()
+       updater.idle()
+
+   if __name__ == '__main__':
+       main()
